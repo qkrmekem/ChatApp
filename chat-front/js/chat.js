@@ -2,6 +2,8 @@
 let username = prompt("아이디를 입력하세요");
 let roomNum = prompt("채팅방 번호를 입력하세요");
 
+document.querySelector("#username").innerHTML=username;
+
 // SSE 연결하기
 const eventSource = new EventSource(`http://localhost:8080/chat/roomNum/${roomNum}`);
 eventSource.onmessage = (event) => {
@@ -23,7 +25,7 @@ function getSendMsgBox(data){
 
     return `<div class="sent_msg">
     <p>${data.msg}</p>
-    <span class="time_date"> ${convertTime} / ${data.sender} </span>
+    <span class="time_date"> ${convertTime} / <b>${data.sender}</b> </span>
 </div>`;
 }
 
@@ -36,7 +38,7 @@ function getReceiveMsgBox(data){
 
     return `<div class="received_withd_msg">
     <p>${data.msg}</p>
-    <span class="time_date"> ${convertTime} / ${data.sender} </span>
+    <span class="time_date"> ${convertTime} / <b>${data.sender}</b> </span>
 </div>`;
 }
 
